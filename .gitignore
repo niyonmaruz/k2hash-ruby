@@ -1,0 +1,17 @@
+/.bundle/
+/.yardoc
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+
+# rspec failure tracking
+.rspec_status
+
+/ext/k2hash/k2hash_wrap.o
+/ext/k2hash/k2hash.so
+
+# DO NOT ADD /ext/K2hashExt.so here.
+# Because creatine gem needs 'git ls-files' 
