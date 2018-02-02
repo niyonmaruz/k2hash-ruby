@@ -58,7 +58,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
     $ rspec
     $ sudo gem install rake-compiler
     $ rake build
-    $ sudo gem install pkg/k2hash-0.1.0.gem
+    $ sudo C_INCLUDE_PATH=/path/to/header_files LD_LIBRARY_PATH=/path/to/libraries LIBRARY_PATH=/path/to/libraries gem install pkg/k2hash-0.1.0.gem
 
 ## Contributing
 
