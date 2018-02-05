@@ -1,22 +1,70 @@
 # K2hash
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/k2hash`. To experiment with that code, run `bin/console` for an interactive prompt.
-
 ## Installation
+
+1. Install prerequisites before compiling
+
+- Debian / Ubuntu
+```
+$ sudo aptitude update
+$ sudo aptitude install git autoconf autotools-dev gcc g++ make gdb dh-make fakeroot dpkg-dev devscripts libtool pkg-config libssl-dev
+```
+
+- Fedora / CentOS
+```
+$ sudo yum install git autoconf automake gcc libstdc++-devel gcc-c++ make libtool openssl-devel
+```
+
+2. Clone source codes from Github
+
+```
+$ git clone git@github.com:yahoojapan/k2hash.git
+$ cd k2hash
+$ git clone --recursive git://github.com/yahoojapan/fullock
+$ git submodule update --init --recursive
+```
+
+3. Building and installing FULLOCK
+
+There may be confusion between /usr/lib and /usr/lib64 directories, which could cause compiling errors.
+Should this situation occur, define the appropriate installation paths with the --libdir=/usr/lib or --libdir=/usr/lib64.
+
+```
+$ cd fullock
+$ ./autogen.sh
+$ ./configure --prefix=/usr
+$ make
+$ sudo make install
+```
+
+4. Building and installing K2HASH
+
+```
+$ ./autogen.sh
+$ ./configure --prefix=/usr
+$ make
+$ sudo make install
+```
+
+5. Installing k2hash gem package
 
 Add this line to your application's Gemfile:
 
-```ruby
+```
 gem 'k2hash'
 ```
 
 And then execute:
 
-    $ bundle
+```
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install k2hash
+```
+$ gem install k2hash
+```
 
 ## Usage
 
@@ -43,22 +91,24 @@ After checking out the repo, run `bin/setup` to install dependencies. Then, run 
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
-    $ C_INCLUDE_PATH=/path/to/header_files
-    $ export C_INCLUDE_PATH
-    $ LD_LIBRARY_PATH=/path/to/libraries
-    $ export LD_LIBRARY_PATH
-    $ LIBRARY_PATH=/path/to/libraries
-    $ export LIBRARY_PATH
-    $ cd ext
-    $ swig -ruby k2hash.i
-    $ ruby extconf.rb
-    $ make
-    $ ruby sample.rb
-    $ cd ..
-    $ rspec
-    $ sudo gem install rake-compiler
-    $ rake build
-    $ sudo C_INCLUDE_PATH=/path/to/header_files LD_LIBRARY_PATH=/path/to/libraries LIBRARY_PATH=/path/to/libraries gem install pkg/k2hash-0.1.0.gem
+```
+$ C_INCLUDE_PATH=/path/to/header_files
+$ export C_INCLUDE_PATH
+$ LD_LIBRARY_PATH=/path/to/libraries
+$ export LD_LIBRARY_PATH
+$ LIBRARY_PATH=/path/to/libraries
+$ export LIBRARY_PATH
+$ cd ext/k2hash/
+$ swig -ruby k2hash.i
+$ ruby extconf.rb
+$ make
+$ ruby sample.rb
+$ cd ..
+$ bundle install --path vendor/bundle
+$ bundle exec rspec
+$ bundle exec rake build
+$ sudo C_INCLUDE_PATH=/path/to/header_files LD_LIBRARY_PATH=/path/to/libraries LIBRARY_PATH=/path/to/libraries gem install pkg/k2hash-0.1.0.gem
+```
 
 ## Contributing
 
